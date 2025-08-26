@@ -2,19 +2,7 @@
 .env
 
 # Log files
-logs/
 *.log
-
-# Cache and data directories
-/jellyfin/cache/
-/jellyfin/config/ # Often contains sensitive or user-specific data
-/neo4j/data/
-/neo4j/logs/
-/qwen/cache/
-/qwen/models/
-/redis/data/
-/output/
-/media/
 
 # Python cache
 __pycache__/
@@ -31,3 +19,18 @@ yarn-error.log
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Jellyfin AI Media Stack
+# These are created by the setup.sh script
+logs/
+jellyfin/cache/
+jellyfin/config/
+neo4j/data/
+neo4j/logs/
+neo4j/plugins/
+qwen/cache/
+qwen/models/
+redis/data/
+output/
+media/
+dashboard/node_modules/
