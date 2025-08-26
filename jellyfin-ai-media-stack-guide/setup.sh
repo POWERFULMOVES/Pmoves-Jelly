@@ -65,11 +65,6 @@ if [ ! -f "$NEO4J_PLUGINS_DIR/neo4j-graph-data-science.jar" ]; then
         "https://github.com/neo4j/graph-data-science/releases/download/2.5.0/neo4j-graph-data-science-2.5.0.jar"
 fi
 
-# Build custom Docker images
-print_status "Building custom Docker images..."
-docker build -t media-audio-processor ./audio-processor/
-docker build -t media-api-gateway ./api-gateway/
-
 # Start Supabase (if using local instance)
 if grep -q "localhost" .env; then
     print_status "Starting Supabase local development..."
@@ -106,11 +101,9 @@ done
 
 # Setup Neo4j database
 print_status "Setting up Neo4j database..."
-if command -v cypher-shell &> /dev/null; then
-    cypher-shell -u neo4j -p mediapassword123 < neo4j-setup.cypher || print_warning "Neo4j setup script failed. You may need to run it manually."
-else
-    print_warning "cypher-shell not found. Please run neo4j-setup.cypher manually in Neo4j browser."
-fi
+print_warning "Waiting 15 seconds for Neo4j to be ready before running setup script..."
+sleep 15
+docker-compose exec neo4j cypher-shell -u neo4j -p mediapassword123 < neo4j-setup.cypher || print_warning "Neo4j setup script failed. You may need to run it manually via the Neo4j Browser or by exec-ing into the container."
 
 echo ""
 print_status "🎉 Setup complete!"
