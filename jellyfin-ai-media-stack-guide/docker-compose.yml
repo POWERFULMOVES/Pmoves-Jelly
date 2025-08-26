@@ -25,11 +25,18 @@ services:
       - ./media/videos:/media/videos
       - ./media/podcasts:/media/podcasts
       - ./output:/output  # For AI-processed content
+      - ./jellyfin-ai-media-stack-guide/install_plugins.sh:/usr/local/bin/install_plugins.sh:ro
     ports:
       - "8096:8096"      # HTTP
       - "8920:8920"      # HTTPS (optional)
       - "7359:7359/udp"  # Client discovery
       - "1900:1900/udp"  # DLNA discovery
+    entrypoint: |
+      bash -c "
+        chmod +x /usr/local/bin/install_plugins.sh
+        /usr/local/bin/install_plugins.sh
+        /init
+      "
     networks:
       - media-stack
     restart: unless-stopped
