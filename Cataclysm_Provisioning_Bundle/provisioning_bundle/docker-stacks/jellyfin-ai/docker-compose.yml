@@ -25,7 +25,7 @@ services:
       - ./media/videos:/media/videos
       - ./media/podcasts:/media/podcasts
       - ./output:/output  # For AI-processed content
-      - ./jellyfin-ai-media-stack-guide/install_plugins.sh:/usr/local/bin/install_plugins.sh:ro
+      - ./install_plugins.sh:/usr/local/bin/install_plugins.sh:ro
     ports:
       - "8096:8096"      # HTTP
       - "8920:8920"      # HTTPS (optional)
