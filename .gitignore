@@ -1,0 +1,33 @@
+# Environment variables
+.env
+
+# Log files
+logs/
+*.log
+
+# Cache and data directories
+/jellyfin/cache/
+/jellyfin/config/ # Often contains sensitive or user-specific data
+/neo4j/data/
+/neo4j/logs/
+/qwen/cache/
+/qwen/models/
+/redis/data/
+/output/
+/media/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
